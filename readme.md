@@ -11,7 +11,7 @@
 apply plugin: 'com.huangmb.fine-report-plugin'
 ```
 
-注：目前该插件还未在gradle插件中心上架，所以还需要通过本地插件的方式引用。待插件上架后后面的操作.
+注：目前该插件还未在gradle插件中心上架，所以还需要通过本地插件的方式引用。待插件上架后不需要后面的操作.
 在build.gradle文件顶部添加：
 
 ``` groovy
