@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'maven'
+    id 'java-gradle-plugin'
+    id "com.gradle.plugin-publish" version "0.10.1"
+}
+
+group 'com.huangmb.gradle'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+gradlePlugin {
+    plugins {
+        fineReportPlugin {
+            id = 'com.huangmb.fine-report-plugin'
+            implementationClass = 'com.huangmb.gradle.plugin.finereport.FineReportPlugin'
+        }
+    }
+}
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    compile localGroovy()
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url:  uri("$buildDir/repo"))
+//        repository(url: repositories.mavenLocal().url)
+    }
+}
+
+
+// 发布到gradle插件中心
+pluginBundle {
+    website = 'https://github.com/huangmb/'
+    vcsUrl = 'https://github.com/huangmb/finereport-gradle-plugin'
+    description = '构建FineReport插件'
+    tags = ['FineReport','FanRuan']
+
+    plugins {
+        fineReportPlugin {
+            // id is captured from java-gradle-plugin configuration
+            displayName = 'FineReport Plugin Development'
+        }
+    }
+}
